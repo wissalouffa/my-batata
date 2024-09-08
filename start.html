@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Question</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: white;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 2em;
+        color: #e94d58;
+        margin: 15px 0;
+      }
+
+      h2 {
+        font-size: 2em;
+        color: #e94d58;
+        margin: 15px 0;
+      }
+
+      .gif {
+        width: 100%;
+        max-width: 300px;
+        margin: 20px auto;
+      }
+
+      .btn-group {
+        margin-top: 50px;
+        position: relative;
+        height: 40px;
+      }
+
+      button {
+        width: 150px;
+        height: inherit;
+        color: white;
+        font-size: 1.2em;
+        border-radius: 30px;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0 2px 4px gray;
+        border: 2px solid #e94d58;
+      }
+
+      button.yes-btn {
+        background: #e94d58;
+      }
+
+      button.no-btn {
+        background: white;
+        color: #e94d58;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hey my lovely Abderrahmane!</h1>
+        <p>I have a special question for you:</p>
+        <button id="clickMeBtn" onclick="showQuestion()">Click me!</button>
+        <div id="question" style="display:none;">
+            <h2>Will you kiss my foot?</h2>
+            <button id="yesButton" class="yes-btn" onclick="answerYes()">Yes</button>
+            <button id="noButton" class="no-btn">No</button>
+        </div>
+        <img class="gif" src="" alt="">
+    </div>
+
+    <script>
+        function showQuestion() {
+            document.getElementById('clickMeBtn').style.display = 'none'; // Hide the "Click me!" button
+            document.getElementById('question').style.display = 'block';
+        }
+
+        function answerYes() {
+            const question = document.getElementById('question');
+            const gif = document.querySelector('.gif');
+            question.innerHTML = "You are so sweet 😘";
+            gif.src = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGI1cW5wMWhpaDF5b3pjdTF0OHZrcHJvaGkzOHJteDhmd245OGRnZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Vuw9m5wXviFIQ/giphy.gif";
+        }
+
+        const noBtn = document.getElementById('noButton');
+        noBtn.addEventListener("mouseover", () => {
+            const container = document.querySelector(".container");
+            const containerRect = container.getBoundingClientRect();
+            const noBtnRect = noBtn.getBoundingClientRect();
+
+            // Calculate max positions to ensure the button stays within the container
+            const maxX = containerRect.width - noBtnRect.width;
+            const maxY = containerRect.height - noBtnRect.height;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
+        });
+    </script>
+</body>
+</html>
